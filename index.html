@@ -16,313 +16,217 @@
             font-family: 'Noto Sans JP', 'Yu Gothic', 'Hiragino Sans', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         .header {
             text-align: center;
             color: white;
             margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
         .header p {
-            font-size: 1.1em;
+            font-size: 1.2em;
             opacity: 0.9;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .card {
+        .instruction-card {
             background: white;
             border-radius: 15px;
-            padding: 25px;
+            padding: 30px;
+            max-width: 600px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
         }
 
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
-        .card h2 {
+        .instruction-card h2 {
             color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-            border-bottom: 2px solid #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
             padding-bottom: 10px;
-        }
-
-        .passage-area {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            line-height: 1.8;
-            font-size: 1.05em;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .chat-container {
-            height: 500px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #chat-frame {
-            flex: 1;
-            border: none;
-            border-radius: 10px;
-        }
-
-        .problem-selector {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .problem-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .problem-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .problem-btn:active {
-            transform: translateY(0);
-        }
-
-        .info-box {
-            background: #e3f2fd;
-            border-left: 4px solid #2196f3;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-
-        .info-box h3 {
-            color: #1976d2;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        .info-box p {
-            color: #424242;
-            line-height: 1.6;
         }
 
         .flow-steps {
             display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            gap: 10px;
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .step {
             flex: 1;
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            border: 2px solid #e0e0e0;
         }
 
         .step-number {
-            background: #667eea;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
+            font-size: 2em;
             font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .step-title {
             font-weight: bold;
-            color: #333;
             margin-bottom: 5px;
         }
 
         .step-desc {
-            font-size: 0.85em;
-            color: #666;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .usage-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .usage-list h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .usage-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .usage-item:last-child {
+            border-bottom: none;
+        }
+
+        .usage-item strong {
+            color: #764ba2;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        df-messenger {
+            --df-messenger-bot-message: #667eea;
+            --df-messenger-button-titlebar-color: #667eea;
+            --df-messenger-chat-background-color: #fafafa;
+            --df-messenger-font-color: white;
+            --df-messenger-send-icon: #667eea;
+            --df-messenger-user-message: #764ba2;
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
             .header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             .flow-steps {
                 flex-direction: column;
             }
 
-            .chat-container {
-                height: 400px;
+            .instruction-card {
+                padding: 20px;
             }
-        }
-
-        .citation {
-            font-size: 0.9em;
-            color: #666;
-            margin-top: 10px;
-            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📚 VR-DA</h1>
-            <p>Vocabulary-First Reading - Dialogflow Agent</p>
-            <p style="font-size: 0.9em; margin-top: 5px;">JLPT N2 語彙先行型読解テスト</p>
+    <div class="header">
+        <h1>📚 VR-DA</h1>
+        <p>Vocabulary-First Reading - Dialogflow Agent</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">JLPT N2 語彙先行型読解テスト</p>
+    </div>
+
+    <div class="instruction-card">
+        <h2>🎯 学習の流れ</h2>
+        
+        <div class="flow-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">語彙テスト</div>
+                <div class="step-desc">3-5語をCR形式で</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">読解問題</div>
+                <div class="step-desc">CR形式で回答</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">四択問題</div>
+                <div class="step-desc">不正解時のみ</div>
+            </div>
         </div>
 
-        <div class="main-content">
-            <!-- 左側: 問題選択と使い方 -->
-            <div class="card">
-                <h2>📋 問題選択</h2>
-                <div class="problem-selector">
-                    <button class="problem-btn" onclick="loadProblem('VR01')">VR01</button>
-                    <button class="problem-btn" onclick="loadProblem('VR02')">VR02</button>
-                    <button class="problem-btn" onclick="loadProblem('VR03')">VR03</button>
-                </div>
-
-                <div class="info-box">
-                    <h3>💡 使い方</h3>
-                    <p>
-                        1. 下の本文を読む<br>
-                        2. 問題ボタンをクリック<br>
-                        3. チャットで語彙テスト<br>
-                        4. メイン問題に回答
-                    </p>
-                </div>
-
-                <div class="info-box" style="background: #fff3e0; border-left-color: #ff9800;">
-                    <h3>🎯 学習の流れ</h3>
-                    <div class="flow-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-title">語彙</div>
-                            <div class="step-desc">3-5語</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-title">読解</div>
-                            <div class="step-desc">CR形式</div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-title">四択</div>
-                            <div class="step-desc">MC形式</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="usage-list">
+            <h3>📖 使い方</h3>
+            <div class="usage-item">
+                <strong>1.</strong> 本文（別紙）を読む
             </div>
-
-            <!-- 右側: チャット -->
-            <div class="card">
-                <h2>💬 AI対話</h2>
-                <div class="chat-container" style="display: flex; flex-direction: column;">
-                    <df-messenger
-                        intent="WELCOME"
-                        chat-title="VR-DA"
-                        agent-id="2a3265d7-57c6-4963-9d43-1a400200e7c7"
-                        language-code="ja"
-                        style="flex: 1; width: 100%; height: 100%;">
-                    </df-messenger>
-                </div>
+            <div class="usage-item">
+                <strong>2.</strong> 右下のチャットボタンをクリック
             </div>
-
-            <!-- 本文表示エリア（全幅） -->
-            <div class="card full-width">
-                <h2 id="passage-title">📖 本文</h2>
-                <div class="passage-area" id="passage-content">
-                    <p style="color: #999; text-align: center; padding: 40px;">
-                        上の問題ボタンをクリックすると、本文が表示されます
-                    </p>
-                </div>
+            <div class="usage-item">
+                <strong>3.</strong> 問題ID（例: VR01）を入力
             </div>
+            <div class="usage-item">
+                <strong>4.</strong> 語彙テスト → 読解問題の順に回答
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 10px; border-left: 4px solid #2196f3;">
+            <strong style="color: #1976d2;">💡 ポイント</strong>
+            <p style="margin-top: 10px; color: #424242;">
+                回答は<strong>どの言語でもOK</strong>（日本語・英語・母語など）<br>
+                文法の小さなミスは許容されます
+            </p>
         </div>
     </div>
 
+    <df-messenger
+        intent="WELCOME"
+        chat-title="VR-DA"
+        agent-id="2a3265d7-57c6-4963-9d43-1a400200e7c7"
+        language-code="ja">
+    </df-messenger>
+
     <script>
-        // 問題データ
-        const problems = {
-            'VR01': {
-                title: 'VR01: インフレと行動経済学',
-                passage: `インフレでものの値段が上がっていったとき、私たちが本来やるべきことは、みんなが買うのをぐっと我慢することなんです。そうすれば需要がおさまりますから、物価の値上がりもおさまったり穏やかになったりします。でも安いうちに買うことを我慢するなんて、なかなかできませんよね。結局みんな一人ひとりが早く買おうとする。自分だけが早く買えば得をするかもしれませんが、みんな同じことを考えます。
-
-みんなが同じことをやると何が起きるのか。たとえば、サッカー観戦でみんなが座っているときに、一人だけ立ち上がるとよく見えますね。でもみんなが同じことを考えて一斉に立ってしまうと、結局みんなが前より見えなくなってしまいます。`,
-                citation: '（池上彰『池上彰のやさしい経済学2 ニュースがわかる！』日本経済新聞出版社による）'
-            },
-            'VR02': {
-                title: 'VR02: 準備中',
-                passage: '問題データを準備中です。',
-                citation: ''
-            },
-            'VR03': {
-                title: 'VR03: 準備中',
-                passage: '問題データを準備中です。',
-                citation: ''
-            }
-        };
-
-        function loadProblem(problemId) {
-            const problem = problems[problemId];
-            
-            // タイトル更新
-            document.getElementById('passage-title').textContent = `📖 ${problem.title}`;
-            
-            // 本文更新
-            const passageDiv = document.getElementById('passage-content');
-            passageDiv.innerHTML = `
-                <p>${problem.passage.replace(/\n/g, '</p><p>')}</p>
-                ${problem.citation ? `<p class="citation">${problem.citation}</p>` : ''}
-            `;
-            
-            // チャットフレームに問題IDを送信（実際はDialogflowに送られる）
-            // ユーザーが手動で入力する形式
-            alert(`本文を読んでから、チャットに「${problemId}」と入力してください。`);
-        }
-
-        // ページ読み込み時にVR01を表示
-        window.onload = function() {
-            loadProblem('VR01');
-        };
+        // Messenger が開いたときにウェルカムメッセージを送信
+        const dfMessenger = document.querySelector('df-messenger');
+        dfMessenger.addEventListener('df-messenger-loaded', () => {
+            console.log('VR-DA Messenger loaded');
+        });
     </script>
 </body>
 </html>
