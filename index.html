@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR-DA - JLPT N2 語彙先行型読解テスト</title>
+    <title>VR-DA</title>
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
     <style>
         * {
@@ -23,118 +23,87 @@
             padding: 20px;
         }
 
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        .instruction-card {
+        .container {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 600px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            text-align: center;
         }
 
-        .instruction-card h2 {
+        h1 {
             color: #667eea;
+            font-size: 2.5em;
             margin-bottom: 20px;
-            font-size: 1.8em;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
         }
 
-        .flow-steps {
-            display: flex;
-            gap: 15px;
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
             margin: 20px 0;
         }
 
-        .step {
-            flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
+        .info-box h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
         }
 
-        .step-number {
-            font-size: 2em;
-            font-weight: bold;
+        .info-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
             margin-bottom: 10px;
         }
 
-        .step-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .step-desc {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-
-        .usage-list {
+        .instruction {
             background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
         }
 
-        .usage-list h3 {
+        .instruction h3 {
             color: #667eea;
             margin-bottom: 15px;
+            font-size: 1.3em;
         }
 
-        .usage-item {
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
+        .instruction ol {
+            margin-left: 20px;
+            color: #333;
         }
 
-        .usage-item:last-child {
-            border-bottom: none;
+        .instruction li {
+            margin: 10px 0;
+            line-height: 1.6;
         }
 
-        .usage-item strong {
-            color: #764ba2;
-        }
-
-        .chat-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .start-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 15px 30px;
+            border: none;
+            padding: 15px 40px;
             border-radius: 50px;
             font-size: 1.2em;
             font-weight: bold;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
             cursor: pointer;
-            animation: pulse 2s infinite;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
+            transition: transform 0.3s ease;
+            margin-top: 20px;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+        .start-button:hover {
+            transform: translateY(-2px);
         }
 
         df-messenger {
@@ -147,86 +116,71 @@
         }
 
         @media (max-width: 768px) {
-            .header h1 {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
                 font-size: 2em;
-            }
-
-            .flow-steps {
-                flex-direction: column;
-            }
-
-            .instruction-card {
-                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="container">
         <h1>📚 VR-DA</h1>
-        <p>Vocabulary-First Reading - Dialogflow Agent</p>
-        <p style="font-size: 0.9em; margin-top: 10px;">JLPT N2 語彙先行型読解テスト</p>
-    </div>
+        <p class="subtitle">
+            JLPT N2 語彙先行型読解テスト<br>
+            Vocabulary-First Reading - Dialogflow Agent
+        </p>
 
-    <div class="instruction-card">
-        <h2>🎯 学習の流れ</h2>
-        
-        <div class="flow-steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <div class="step-title">語彙テスト</div>
-                <div class="step-desc">3-5語をCR形式で</div>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <div class="step-title">読解問題</div>
-                <div class="step-desc">CR形式で回答</div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-title">四択問題</div>
-                <div class="step-desc">不正解時のみ</div>
-            </div>
-        </div>
-
-        <div class="usage-list">
-            <h3>📖 使い方</h3>
-            <div class="usage-item">
-                <strong>1.</strong> 本文（別紙）を読む
-            </div>
-            <div class="usage-item">
-                <strong>2.</strong> 右下のチャットボタンをクリック
-            </div>
-            <div class="usage-item">
-                <strong>3.</strong> 問題ID（例: VR01）を入力
-            </div>
-            <div class="usage-item">
-                <strong>4.</strong> 語彙テスト → 読解問題の順に回答
-            </div>
-        </div>
-
-        <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 10px; border-left: 4px solid #2196f3;">
-            <strong style="color: #1976d2;">💡 ポイント</strong>
-            <p style="margin-top: 10px; color: #424242;">
-                回答は<strong>どの言語でもOK</strong>（日本語・英語・母語など）<br>
-                文法の小さなミスは許容されます
+        <div class="info-box">
+            <h2>🎯 このシステムについて</h2>
+            <p>
+                読解問題の前に、重要な語彙の意味を確認します。<br>
+                語彙の理解を深めてから、読解問題に取り組むことで、<br>
+                より効果的な学習ができます。
             </p>
         </div>
+
+        <div class="instruction">
+            <h3>📖 使い方</h3>
+            <ol>
+                <li>右下のチャットボタンをクリック</li>
+                <li>名前を入力</li>
+                <li>問題番号を選択（例: VR01）</li>
+                <li>語彙テスト（3-5語）に回答</li>
+                <li>読解問題に回答</li>
+            </ol>
+        </div>
+
+        <div class="info-box">
+            <h2>💡 回答について</h2>
+            <p>
+                回答は<strong>日本語・英語・母語など、どの言語でもOK</strong>です。<br>
+                文法の小さなミスは許容されます。<br>
+                安心して自分の言葉で答えてください。
+            </p>
+        </div>
+
+        <button class="start-button" onclick="openMessenger()">
+            チャットを開始する
+        </button>
     </div>
 
     <df-messenger
-        intent="WELCOME"
         chat-title="VR-DA"
         agent-id="2a3265d7-57c6-4963-9d43-1a400200e7c7"
         language-code="ja">
     </df-messenger>
 
     <script>
-        // Messenger が開いたときにウェルカムメッセージを送信
-        const dfMessenger = document.querySelector('df-messenger');
-        dfMessenger.addEventListener('df-messenger-loaded', () => {
-            console.log('VR-DA Messenger loaded');
-        });
+        function openMessenger() {
+            const messenger = document.querySelector('df-messenger');
+            if (messenger) {
+                messenger.renderCustomText('こんにちは！');
+            }
+        }
     </script>
 </body>
 </html>
