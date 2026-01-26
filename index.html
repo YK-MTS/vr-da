@@ -14,10 +14,9 @@
 
         body {
             font-family: 'Noto Sans JP', 'Yu Gothic', 'Hiragino Sans', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f5f5;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
@@ -25,147 +24,51 @@
 
         .container {
             background: white;
-            border-radius: 20px;
+            border-radius: 10px;
             padding: 40px;
-            max-width: 800px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            max-width: 500px;
             text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         h1 {
-            color: #667eea;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .info-box h2 {
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .info-box p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 10px;
-        }
-
-        .instruction {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .instruction h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        .instruction ol {
-            margin-left: 20px;
             color: #333;
+            font-size: 2em;
+            margin-bottom: 30px;
+            font-weight: normal;
         }
 
-        .instruction li {
-            margin: 10px 0;
+        p {
+            color: #666;
+            font-size: 1em;
             line-height: 1.6;
         }
 
-        .start-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.6);
-            transition: transform 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .start-button:hover {
-            transform: translateY(-2px);
-        }
-
         df-messenger {
-            --df-messenger-bot-message: #667eea;
-            --df-messenger-button-titlebar-color: #667eea;
+            --df-messenger-bot-message: #4285f4;
+            --df-messenger-button-titlebar-color: #4285f4;
             --df-messenger-chat-background-color: #fafafa;
             --df-messenger-font-color: white;
-            --df-messenger-send-icon: #667eea;
-            --df-messenger-user-message: #764ba2;
+            --df-messenger-send-icon: #4285f4;
+            --df-messenger-user-message: #999;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 25px;
+                padding: 30px;
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📚 VR-DA</h1>
-        <p class="subtitle">
-            JLPT N2 語彙先行型読解テスト<br>
-            Vocabulary-First Reading - Dialogflow Agent
-        </p>
-
-        <div class="info-box">
-            <h2>🎯 このシステムについて</h2>
-            <p>
-                読解問題の前に、重要な語彙の意味を確認します。<br>
-                語彙の理解を深めてから、読解問題に取り組むことで、<br>
-                より効果的な学習ができます。
-            </p>
-        </div>
-
-        <div class="instruction">
-            <h3>📖 使い方</h3>
-            <ol>
-                <li>右下のチャットボタンをクリック</li>
-                <li>名前を入力</li>
-                <li>問題番号を選択（例: VR01）</li>
-                <li>語彙テスト（3-5語）に回答</li>
-                <li>読解問題に回答</li>
-            </ol>
-        </div>
-
-        <div class="info-box">
-            <h2>💡 回答について</h2>
-            <p>
-                回答は<strong>日本語・英語・母語など、どの言語でもOK</strong>です。<br>
-                文法の小さなミスは許容されます。<br>
-                安心して自分の言葉で答えてください。
-            </p>
-        </div>
-
-        <button class="start-button" onclick="openMessenger()">
-            チャットを開始する
-        </button>
+        <h1>VR-DA</h1>
+        <p>JLPT N2 語彙先行型読解テスト</p>
+        <p style="margin-top: 20px;">右下のチャットボットとのやりとりを通じて、読解テストに回答してください。<br>Please answer the reading comprehension test by interacting with the chatbot at the bottom right.</p>
     </div>
 
     <df-messenger
@@ -174,14 +77,5 @@
         agent-id="2a3265d7-57c6-4963-9d43-1a400200e7c7"
         language-code="ja">
     </df-messenger>
-
-    <script>
-        function openMessenger() {
-            const messenger = document.querySelector('df-messenger');
-            if (messenger) {
-                messenger.renderCustomText('こんにちは！');
-            }
-        }
-    </script>
 </body>
 </html>
