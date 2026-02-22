@@ -81,13 +81,23 @@
               const chat = df.shadowRoot.querySelector('df-messenger-chat');
               const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
               const style = document.createElement('style');
-              style.textContent = `
-                input {
-                  outline: none !important;
-                  box-shadow: none !important;
-                  border: 1px solid #ccc !important;
-                }
-              `;
+            　style.textContent = `
+                  * {
+                    outline: none !important;
+                    box-shadow: none !important;
+                  }
+                  input {
+                    outline: none !important;
+                    box-shadow: none !important;
+                    border: 1px solid #ccc !important;
+                    font-size: 1.1em !important;
+                  }
+                  .input-box-wrapper,
+                  .input-box-wrapper:focus-within {
+                    border: 1px solid #e0e0e0 !important;
+                    box-shadow: none !important;
+                  }
+                `;
               userInput.shadowRoot.appendChild(style);
               console.log('スタイル注入成功');
             } catch(e) {
