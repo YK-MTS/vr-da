@@ -86,12 +86,24 @@
     
           const style = document.createElement('style');
           style.textContent = `
-            input {
-              outline: none !important;
-              box-shadow: none !important;
-              border: 2px solid #ffffff !important;
-            }
-          `;
+              input {
+                outline: none !important;
+                box-shadow: none !important;
+                border: 2px solid white !important;
+              }
+              .input-box-wrapper {
+                outline: none !important;
+                box-shadow: none !important;
+                border: none !important;
+              }
+              .input-container {
+                outline: none !important;
+                border: none !important;
+              }
+              * {
+                outline: none !important;
+              }
+            `;
           userInput.shadowRoot.appendChild(style);
           console.log('スタイル注入成功');
           return true;
