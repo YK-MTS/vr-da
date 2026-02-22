@@ -99,6 +99,11 @@
                   }
                 `;
               userInput.shadowRoot.appendChild(style);
+              const input = userInput.shadowRoot.querySelector('input');
+              if (input) {
+                input.placeholder = '回答を入力...';
+              }
+
               console.log('スタイル注入成功');
             } catch(e) {
               console.error('スタイル注入失敗:', e);
