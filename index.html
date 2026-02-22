@@ -40,7 +40,6 @@
             line-height: 1.6;
         }
         df-messenger {
-            /* 濃い青色（#1e3a8a）に変更 */
             --df-messenger-bot-message: #1e3a8a;
             --df-messenger-button-titlebar-color: #1e3a8a;
             --df-messenger-chat-background-color: #fafafa;
@@ -49,10 +48,6 @@
             --df-messenger-user-message: #1e3a8a;
             --df-messenger-user-message-font-color: white;
             --df-messenger-primary-color: #1e3a8a;
-            --df-messenger-input-box-focus-border: none;
-            --df-messenger-input-box-focus-shadow: none;
-            --df-messenger-input-border-color-focus: transparent;
-            --df-messenger-focus-border: none;
         }
         @media (max-width: 768px) {
             .container {
@@ -64,10 +59,22 @@
         }
     </style>
 </head>
-  <script>
+<body>
+    <div class="container">
+        <h1>VR-DA</h1>
+        <p>JLPT N2 語彙先行型読解テスト</p>
+        <p style="margin-top: 20px;">右下のチャットボットとのやりとりを通じて、読解テストに回答してください。<br>Please answer the reading comprehension test by interacting with the chatbot at the bottom right.</p>
+    </div>
+    <df-messenger
+        intent="WELCOME"
+        chat-title="VR-DA"
+        agent-id="2a3265d7-57c6-4963-9d43-1a400200e7c7"
+        language-code="ja">
+    </df-messenger>
+
+    <script>
       document.addEventListener('DOMContentLoaded', () => {
         const df = document.querySelector('df-messenger');
-
         df.addEventListener('df-messenger-loaded', () => {
           setTimeout(() => {
             try {
@@ -90,19 +97,5 @@
         });
       });
     </script>
-</body>
-</html>
-<body>
-    <div class="container">
-        <h1>VR-DA</h1>
-        <p>JLPT N2 語彙先行型読解テスト</p>
-        <p style="margin-top: 20px;">右下のチャットボットとのやりとりを通じて、読解テストに回答してください。<br>Please answer the reading comprehension test by interacting with the chatbot at the bottom right.</p>
-    </div>
-    <df-messenger
-        intent="WELCOME"
-        chat-title="VR-DA"
-        agent-id="2a3265d7-57c6-4963-9d43-1a400200e7c7"
-        language-code="ja">
-    </df-messenger>
 </body>
 </html>
