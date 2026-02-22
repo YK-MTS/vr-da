@@ -73,42 +73,29 @@
     </df-messenger>
 
     <script>
-      const css = `
-        * {
-          outline: none !important;
-          box-shadow: none !important;
-        }
-        .input-box-wrapper,
-        .input-box-wrapper:focus-within,
-        .input-box-wrapper.valid {
-          border: 1px solid #e0e0e0 !important;
-        }
-        input {
-          border: none !important;
-          outline: none !important;
-        }
-      `;
-    
-      function injectToAllShadowRoots(root) {
-        const style = document.createElement('style');
-        style.textContent = css;
-        root.appendChild(style);
-    
-        root.querySelectorAll('*').forEach(el => {
-          if (el.shadowRoot) injectToAllShadowRoots(el.shadowRoot);
-        });
-      }
-    
       let attempts = 0;
       const timer = setInterval(() => {
         attempts++;
-        const df = document.querySelector('df-messenger');
-        if (df && df.shadowRoot) {
-          injectToAllShadowRoots(df.shadowRoot);
-          console.log('全シャドウルートに注入成功');
+        try {
+          const df = document.querySelector('df-messenger');
+          const chat = df.shadowRoot.querySelector('df-messenger-chat');
+          const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
+          
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(`
+            * { outline: none !important; box-shadow: none !important; }
+            .input-box-wrapper, .input-box-wrapper:focus-within {
+              border: 1px solid #e0e0e0 !important;
+            }
+          `);
+          userInput.shadowRoot.adoptedStyleSheets = [
+            ...userInput.shadowRoot.adoptedStyleSheets, sheet
+          ];
+          console.log('注入成功');
           clearInterval(timer);
+        } catch(e) {
+          if (attempts > 100) clearInterval(timer);
         }
-        if (attempts > 100) clearInterval(timer);
       }, 100);
     </script>
    
