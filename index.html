@@ -78,14 +78,23 @@
         attempts++;
         try {
           const df = document.querySelector('df-messenger');
+          if (!df || !df.shadowRoot) return;
+
           const chat = df.shadowRoot.querySelector('df-messenger-chat');
+          if (!chat || !chat.shadowRoot) return;
+
           const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
-          
+          if (!userInput || !userInput.shadowRoot) return;
+
           const sheet = new CSSStyleSheet();
           sheet.replaceSync(`
-            * { outline: none !important; box-shadow: none !important; }
-            .input-box-wrapper, .input-box-wrapper:focus-within {
-              border: 1px solid #e0e0e0 !important;
+            * {
+              outline: none !important;
+              box-shadow: none !important;
+            }
+            .input-box-wrapper,
+            .input-box-wrapper:focus-within {
+              border: 1px solid #bfdbfe !important;
             }
           `);
           userInput.shadowRoot.adoptedStyleSheets = [
@@ -98,6 +107,5 @@
         }
       }, 100);
     </script>
-   
 </body>
 </html>
