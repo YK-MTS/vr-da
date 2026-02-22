@@ -73,29 +73,41 @@
     </df-messenger>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const df = document.querySelector('df-messenger');
-        df.addEventListener('df-messenger-loaded', () => {
-          setTimeout(() => {
-            try {
-              const chat = df.shadowRoot.querySelector('df-messenger-chat');
-              const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
-              const style = document.createElement('style');
-              style.textContent = `
-                input {
-                  outline: none !important;
-                  box-shadow: none !important;
-                  border: 1px solid #ccc !important;
-                }
-              `;
-              userInput.shadowRoot.appendChild(style);
-              console.log('スタイル注入成功');
-            } catch(e) {
-              console.error('スタイル注入失敗:', e);
+      function injectInputStyle() {
+        try {
+          const df = document.querySelector('df-messenger');
+          if (!df || !df.shadowRoot) return false;
+    
+          const chat = df.shadowRoot.querySelector('df-messenger-chat');
+          if (!chat || !chat.shadowRoot) return false;
+    
+          const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
+          if (!userInput || !userInput.shadowRoot) return false;
+    
+          const style = document.createElement('style');
+          style.textContent = `
+            input {
+              outline: none !important;
+              box-shadow: none !important;
+              border: 1px solid #ccc !important;
             }
-          }, 1000);
-        });
-      });
+          `;
+          userInput.shadowRoot.appendChild(style);
+          console.log('スタイル注入成功');
+          return true;
+        } catch(e) {
+          return false;
+        }
+      }
+    
+      // 100msごとに試し、成功したら止まる（最大10秒）
+      let attempts = 0;
+      const timer = setInterval(() => {
+        attempts++;
+        if (injectInputStyle() || attempts > 100) {
+          clearInterval(timer);
+        }
+      }, 100);
     </script>
 </body>
 </html>
