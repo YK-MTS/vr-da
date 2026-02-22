@@ -64,6 +64,36 @@
         }
     </style>
 </head>
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dfMessenger = document.querySelector('df-messenger');
+
+    dfMessenger.addEventListener('df-messenger-loaded', () => {
+      // シャドウDOMを再帰的に探索してスタイルを注入
+      function injectStyle(root) {
+        const style = document.createElement('style');
+        style.textContent = `
+          input:focus,
+          textarea:focus {
+            outline: none !important;
+            border: none !important;
+            box-shadow: none !important;
+          }
+        `;
+        root.appendChild(style);
+
+        // ネストされたシャドウDOMにも適用
+        root.querySelectorAll('*').forEach(el => {
+          if (el.shadowRoot) injectStyle(el.shadowRoot);
+        });
+      }
+
+      if (dfMessenger.shadowRoot) {
+        injectStyle(dfMessenger.shadowRoot);
+      }
+    });
+  });
+</script>
 <body>
     <div class="container">
         <h1>VR-DA</h1>
