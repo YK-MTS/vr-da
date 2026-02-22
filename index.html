@@ -72,42 +72,41 @@
         language-code="ja">
     </df-messenger>
 
+
     <script>
-      let attempts = 0;
-      const timer = setInterval(() => {
-        attempts++;
+      function injectInputStyle() {
         try {
           const df = document.querySelector('df-messenger');
-          if (!df || !df.shadowRoot) return;
-
+          if (!df || !df.shadowRoot) return false;
+    
           const chat = df.shadowRoot.querySelector('df-messenger-chat');
-          if (!chat || !chat.shadowRoot) return;
-
+          if (!chat || !chat.shadowRoot) return false;
+    
           const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
-          if (!userInput || !userInput.shadowRoot) return;
-
+          if (!userInput || !userInput.shadowRoot) return false;
+    
           const style = document.createElement('style');
           style.textContent = `
-            * {
-              outline: none !important;
-              box-shadow: none !important;
-            }
             input {
               outline: none !important;
               box-shadow: none !important;
               border: 1px solid #ccc !important;
             }
-            .input-box-wrapper,
-            .input-box-wrapper:focus-within {
-              border: 1px solid #e0e0e0 !important;
-              box-shadow: none !important;
-            }
           `;
           userInput.shadowRoot.appendChild(style);
-          console.log('注入成功');
-          clearInterval(timer);
+          console.log('スタイル注入成功');
+          return true;
         } catch(e) {
-          if (attempts > 100) clearInterval(timer);
+          return false;
+        }
+      }
+    
+      // 100msごとに試し、成功したら止まる（最大10秒）
+      let attempts = 0;
+      const timer = setInterval(() => {
+        attempts++;
+        if (injectInputStyle() || attempts > 100) {
+          clearInterval(timer);
         }
       }, 100);
     </script>
