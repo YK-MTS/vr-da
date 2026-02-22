@@ -85,25 +85,25 @@
           if (!userInput || !userInput.shadowRoot) return false;
     
           const style = document.createElement('style');
-          style.textContent = `
-              input {
+        　style.textContent = `
+              * {
                 outline: none !important;
                 box-shadow: none !important;
-                border: 2px solid white !important;
               }
               .input-box-wrapper {
-                outline: none !important;
+                border: 1px solid #e0e0e0 !important;
+              }
+              .input-box-wrapper:focus-within {
+                border: 1px solid #e0e0e0 !important;
                 box-shadow: none !important;
-                border: none !important;
-              }
-              .input-container {
                 outline: none !important;
-                border: none !important;
               }
-              * {
+              input {
+                border: none !important;
                 outline: none !important;
               }
             `;
+
           userInput.shadowRoot.appendChild(style);
           console.log('スタイル注入成功');
           return true;
