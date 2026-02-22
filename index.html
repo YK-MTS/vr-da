@@ -86,20 +86,24 @@
           const userInput = chat.shadowRoot.querySelector('df-messenger-user-input');
           if (!userInput || !userInput.shadowRoot) return;
 
-          const sheet = new CSSStyleSheet();
-          sheet.replaceSync(`
+          const style = document.createElement('style');
+          style.textContent = `
             * {
               outline: none !important;
               box-shadow: none !important;
             }
+            input {
+              outline: none !important;
+              box-shadow: none !important;
+              border: 1px solid #ccc !important;
+            }
             .input-box-wrapper,
             .input-box-wrapper:focus-within {
-              border: 1px solid #bfdbfe !important;
+              border: 1px solid #e0e0e0 !important;
+              box-shadow: none !important;
             }
-          `);
-          userInput.shadowRoot.adoptedStyleSheets = [
-            ...userInput.shadowRoot.adoptedStyleSheets, sheet
-          ];
+          `;
+          userInput.shadowRoot.appendChild(style);
           console.log('注入成功');
           clearInterval(timer);
         } catch(e) {
